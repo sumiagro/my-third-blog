@@ -1,0 +1,27 @@
+{% load static %}
+<html lang="ja" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title></title>
+<link rel="stylesheet" href="{% static 'css/MBO.css' %}">
+
+</head>
+<body class="container">
+
+   <h1> 
+      コンピテンシー評価　評定するメンバーを選択して下さい<br><br>
+
+      {% for i in data %}
+         {% if i.id == 1 %}
+         {% else %}
+            {% if i.id == ID %}
+            {% else %}
+               <td><a href="{% url 'CPA2' name=i.username %}">{{i.first_name}}&nbsp;{{i.last_name}}さん</a></td><br>
+            {% endif %}
+         {% endif %}
+      {% endfor %}
+   <br>
+   <a href="{% url 'sample' %}">人事システムホーム画面に戻る</a></h1>
+
+</body>
+</html>

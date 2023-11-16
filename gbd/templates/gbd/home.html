@@ -1,0 +1,39 @@
+{% load static %}
+<html lang="ja" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+        <a href="https://en.wikipedia.org/wiki/Django" class="external_link" id="link_to_wiki_page"></a>
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/MBO.css' %}">
+
+        <title>中小企業向け人事評価・考課システムをクラウド・低価格・初期費用ゼロでカスタムメイド致します</title>
+        <meta name="google-site-verification" content="crJi9ZMgsdKrUjrFHUDZ06MkUeR8qRmF5vVaP8wFNk4" />
+
+    </head>
+    <body> 
+        <form action="{% url 'GOAL' %}" method="post">
+            <div class="content3"><font color="blue">中小企業向け人事評価・考課システムをクラウド・低価格・初期費用ゼロでカスタムメイド致します</font></div>
+            <div class="content2">
+            目標管理制度、コンピテンシー評価などの人事機能をエクセル、メール、ワードで行っておりこれをウェブ管理へ移行したい貴社へ
+            そのプラットフォームをご提供差し上げます<br><br>
+            弊社製品コンセプトはシンプル・カスタムメイド・実用的・低価格</br>
+            随時プラットフォームフォーマットの変更や新規機能追加にも対応</br>
+            貴社コストは月額2万5千円のみ（初期費用ゼロ・随時解約可能）</br>
+            研修参加及びその報告や、他にも人事以外の分野も相談可</br>
+            <br>
+            <a href="{% url 'login' %}">弊社製品例デモ
+            </a><br>
+            <br>          
+            お問い合わせは以下までメール下さい<br>
+            practicalweb@outlook.com
+            <br>
+            </div>
+            <img src="static/top5.jpg" class="sample">        
+        </form>    
+    </body>
+
+</html>

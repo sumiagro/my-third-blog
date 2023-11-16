@@ -1,0 +1,107 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <link rel="stylesheet" 
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/MBO.css' %}">   
+</head>
+<body class="container" ontouchstart="">  
+    {% if user.is_authenticated %}
+        <form action="{% url 'edit' user.id %}" method="post">
+            <p class="middle"><font color="blue">{{FN}}{{LN}}</font>さんの目標設定・レビュー</p>
+            {% csrf_token %}
+            <table border="1" cellspacing="0">
+                <tr style="background-color: #F0F8FF;">
+                    <td class="goal"><font size="2">期初目標設定</font></td>
+                    <td class="goala"><font size="2">ウェイト%</font></td>
+                    <td class="goal"><font size="2">期中レビュー</font></td>
+                    <td class="goal"><font size="2">期末レビュー</font></td>
+                    <td class="goala"><font size="2">評価点数</font></td>
+                    <td class="goal"><font size="2">評定者コメント</font></td>
+            </tr>
+                <tr class="edit">
+                    <td><font size="2">{% if sbmt == 0 %}{{data1.GOAL22A1}}
+                        {% else %}<div class="pc">{{data2.0}}</div><div class="tooltip2">詳細<div class="description2">{{data2.0}}</div></div>{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 0 %}{{data1.GOAL22AP}}{% else %}{{data3.0}}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 1 %}{{data1.GOAL22A2}}
+                        {% elif sbmt == 2 %}<div class="pc">{{data4.0}}</div><div class="tooltip2">詳細<div class="description2">{{data4.0}}</div></div>{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 2 %}{{data1.GOAL22A3}}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 2 %}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 2 %}{% endif %}</font></td>
+                </tr>
+                <tr class="edit">
+                    <td><font size="2">{% if sbmt == 0 %}{{data1.GOAL22B1}}
+                        {% else %}<div class="pc">{{data2.1}}</div><div class="tooltip2">詳細<div class="description2">{{data2.1}}</div></div>{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 0 %}{{data1.GOAL22BP}}{% else %}{{data3.1}}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 1 %}{{data1.GOAL22B2}}
+                        {% elif sbmt == 2 %}<div class="pc">{{data4.1}}</div><div class="tooltip2">詳細<div class="description2">{{data4.1}}</div></div>{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 2 %}{{data1.GOAL22B3}}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 2 %}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 2 %}{% endif %}</font></td>
+                </tr>                    
+                <tr class="edit">
+                    <td><font size="2">{% if sbmt == 0 %}{{data1.GOAL22C1}}
+                        {% else %}<div class="pc">{{data2.2}}</div><div class="tooltip2">詳細<div class="description2">{{data2.2}}</div></div>{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 0 %}{{data1.GOAL22CP}}{% else %}{{data3.2}}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 1 %}{{data1.GOAL22C2}}
+                        {% elif sbmt == 2 %}<div class="pc">{{data4.2}}</div><div class="tooltip2">詳細<div class="description2">{{data4.2}}</div></div>{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 2 %}{{data1.GOAL22C3}}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 2 %}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 2 %}{% endif %}</font></td>
+                </tr>                    
+                <tr class="">
+                    <td><font size="2">{% if sbmt == 0 %}{{data1.GOAL22D1}}
+                        {% else %}<div class="pc">{{data2.3}}</div><div class="tooltip2">詳細<div class="description2">{{data2.3}}</div></div>{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 0 %}{{data1.GOAL22DP}}{% else %}{{data3.3}}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 1 %}{{data1.GOAL22D2}}
+                        {% elif sbmt == 2 %}<div class="pc">{{data4.3}}</div><div class="tooltip2">詳細<div class="description2">{{data4.3}}</div></div>{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 2 %}{{data1.GOAL22D3}}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 2 %}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 2 %}{% endif %}</font></td>
+                </tr>                    
+                <tr class="edit">
+                    <td><font size="2">{% if sbmt == 0 %}{{data1.GOAL22E1}}
+                        {% else %}{% if data3.4 != 0 %}<div class="pc">{{data2.4}}</div><div class="tooltip2">詳細<div class="description2">{{data2.4}}</div></div>{% endif %}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 0 %}{{data1.GOAL22EP}}{% else %}{% if data3.4 != 0 %}{{data3.4}}{% endif %}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 1 %}{{data1.GOAL22E2}}
+                        {% elif sbmt == 2 %}{% if data3.4 != 0 %}<div class="pc">{{data4.4}}</div><div class="tooltip2">詳細<div class="description2">{{data4.4}}</div></div>{% endif %}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 2 %}{{data1.GOAL22E3}}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 2 %}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 2 %}{% endif %}</font></td>
+                </tr>                    
+                <tr class="edit">
+                    <td><font size="2">{% if sbmt == 0 %}{{data1.GOAL22F1}}
+                        {% else %}{% if data3.5 != 0 %}<div class="pc">{{data2.5}}</div><div class="tooltip2">詳細<div class="description2">{{data2.5}}</div></div>{% endif %}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 0 %}{{data1.GOAL22FP}}{% else %}{% if data3.5 != 0 %}{{data3.5}}{% endif %}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 1 %}{{data1.GOAL22F2}}
+                        {% elif sbmt == 2 %}{% if data3.5 != 0 %}<div class="pc">{{data4.5}}</div><div class="tooltip2">詳細<div class="description2">{{data4.5}}</div></div>{% endif %}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 2 %}{{data1.GOAL22F3}}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 2 %}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 2 %}{% endif %}</font></td>
+                </tr>                    
+                <tr class="edit">
+                    <td><font size="2">{% if sbmt == 0 %}{{data1.GOAL22G1}}
+                        {% else %}{% if data3.6 != 0 %}<div class="pc">{{data2.6}}</div><div class="tooltip2">詳細<div class="description2">{{data2.6}}</div></div>{% endif %}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 0 %}{{data1.GOAL22GP}}{% else %}{% if data3.6 != 0 %}{{data3.6}}{% endif %}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 1 %}{{data1.GOAL22G2}}
+                        {% elif sbmt == 2 %}{% if data3.6 != 0 %}<div class="pc">{{data4.6}}</div><div class="tooltip2">詳細<div class="description2">{{data4.6}}</div></div>{% endif %}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 2 %}{{data1.GOAL22G3}}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 2 %}{% endif %}</font></td>
+                    <td><font size="2">{% if sbmt == 2 %}{% endif %}</font></td>
+                </tr>                    
+            </table>
+            <br><tr><th><td>
+                <input type="submit" value="保存/戻る" class="button">
+            </td></th></tr>   
+        </form>
+    
+    {% else %}
+    アクセスをお持ちでありません
+    {% endif %}
+</body>
+</html>

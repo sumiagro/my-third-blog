@@ -1,0 +1,23 @@
+{% load static %}
+<html lang="ja" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title></title>
+<link rel="stylesheet" 
+href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'css/MBO.css' %}">
+</head>
+    <body class="container">  
+        {% if user.is_authenticated %}
+            <form action="{% url 'test' %}" method="post">
+                {% csrf_token %}
+                    <tr><th><td>
+                        <input type="submit" value="評定者に送信" class="button">
+                    </td></th></tr>   
+                <br><td><a href="{% url 'sample' %}"><font size="2">人事システムホーム画面に戻る</font></a></td>       
+            </form>
+        {% else %}
+        アクセスをお持ちでありません
+        {% endif %}
+    </body>
+</html>

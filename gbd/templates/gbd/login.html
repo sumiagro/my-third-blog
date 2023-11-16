@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'css/MBO.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="content4">ログインIDとパスワードを入力してLoginをクリックして下さい</div><br>
+
+    <div class="reg">
+      <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+  
+        <table class="reg_form">
+        <tr>
+          <td><label for="userid"><font size="2">ログインID:</font></label></td>
+          <td><input type="text" name="userid" size="20"></td>
+        </tr>
+        <tr>
+          <td><label for="password"><font size="2">パスワード</font></label></td>
+          <td><input type="password" name="password" size="20"></td>
+        </tr>
+        </table>
+        <input type="submit" class="button5" value="login" style = "font-size:15px;">
+
+        <br><br><br>
+        <div class="content4">
+          以下のIDとパスワードにてログイン下さい<br>
+          山田太郎課長と部下4名の目標管理制度とコンピテンシー評価のシステムサンプルをご覧頂けます<br>
+          これらはあくまでサンプルでご希望の機能やフォーマットをカスタムメイドで対応可能ですので是非お問い合わせください<br>
+          <br>
+          ID:taro.yamada@abccorp.com<br>
+          password:taro3442<br>
+          <br><p class="formobile">スマホでもサンプルご覧になれますがPCからの方がレイアウト見易いので是非</p>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

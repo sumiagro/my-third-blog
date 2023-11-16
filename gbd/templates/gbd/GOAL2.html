@@ -1,0 +1,118 @@
+{% load static %}
+<html lang="ja" dir="ltr">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" 
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/MBO.css' %}">
+</head>
+    <body class="container">  
+        {% if user.is_authenticated %}
+            <form action="{% url 'GOAL2' name=EMP %}" method="post">
+                <p class="middle"><font color="blue">{{FN}}&nbsp;{{LN}}</font>さんの目標設定・レビュー （評定者:<font color="blue">{{FN2}}&nbsp;{{LN2}}さん</font>）</p>                
+                {% csrf_token %}
+                <table border="1" cellspacing="0">
+                    <tr style="background-color: #F0F8FF">
+                        <td class="goal"><font size="2">期初目標設定</font></td>
+                        <td class="goala"><font size="2">ウェイト%</font></td>
+                        <td class="goal"><font size="2">期中レビュー</font></td>
+                        <td class="goal"><font size="2">期末レビュー</font></td>
+                        <td class="goala"><font size="2">評価点数</font></td>
+                        <td class="goal"><font size="2">評定者コメント</font></td>
+                    </tr>
+                    <tr>
+                        <td><font size="2">{{data1.0}}</font></td>
+                        <td><font size="2">{% if data2.0 != 0 %}{{data2.0}}{% endif %}</font></td>
+                        <td><font size="2">{% if sbmt >= 3 %}{{data3.0}}{% endif %}</font></td>
+                        <td><font size="2">{% if sbmt >= 6 %}{{data4.0}}{% endif %}</font></td>
+                        <td style="height: 70px;"><font size="2">{% if sbmt >= 6 %}{% if data2.0 != 0 %}{{data5.0}}{% endif %}{% endif %}</font></td>
+                        <td><font size="2">{% if sbmt >= 6 %}{{data6.0}}{% endif %}</font></td>
+                    </tr>
+                    <tr>
+                        <td><font size="2">{{data1.1}}</font></td>
+                        <td><font size="2">{% if data2.1 != 0 %}{{data2.1}}{% endif %}</font></td>
+                        <td><font size="2">{% if sbmt >= 3 %}{{data3.1}}{% endif %}</font></td>
+                        <td><font size="2">{% if sbmt >= 6 %}{{data4.1}}{% endif %}</font></td>
+                        <td style="height: 70px;"><font size="2">{% if sbmt >= 6 %}{% if data2.1 != 0 %}{{data5.1}}{% endif %}{% endif %}</font></td>
+                        <td><font size="2">{% if sbmt >= 6 %}{{data6.1}}{% endif %}</font></td>
+                    </tr>                    
+                    <tr>
+                        <td><font size="2">{{data1.2}}</font></td>
+                        <td><font size="2">{% if data2.2 != 0 %}{{data2.2}}{% endif %}</font></td>
+                        <td><font size="2">{% if sbmt >= 3 %}{{data3.2}}{% endif %}</font></td>
+                        <td><font size="2">{% if sbmt >= 6 %}{{data4.2}}{% endif %}</font></td>
+                        <td style="height: 70px;"><font size="2">{% if sbmt >= 6 %}{% if data2.2 != 0 %}{{data5.2}}{% endif %}{% endif %}</font></td>
+                        <td><font size="2">{% if sbmt >= 6 %}{{data6.2}}{% endif %}</font></td>
+                    </tr>
+                    <tr>
+                        <td><font size="2">{{data1.3}}</font></td>
+                        <td><font size="2">{% if data2.3 != 0 %}{{data2.3}}{% endif %}</font></td>
+                        <td><font size="2">{% if sbmt >= 3 %}{{data3.3}}{% endif %}</font></td>
+                        <td><font size="2">{% if sbmt >= 6 %}{{data4.3}}{% endif %}</font></td>
+                        <td style="height: 70px;"><font size="2">{% if sbmt >= 6 %}{% if data2.3 != 0 %}{{data5.3}}{% endif %}{% endif %}</font></td>
+                        <td><font size="2">{% if sbmt >= 6 %}{{data6.3}}{% endif %}</font></td>
+                    </tr>
+                    <tr>
+                        <td><font size="2">{{data1.4}}</font></td>
+                        <td><font size="2">{% if data2.4 != 0 %}{{data2.4}}{% endif %}</font></td>
+                        <td><font size="2">{% if sbmt >= 3 %}{{data3.4}}{% endif %}</font></td>
+                        <td><font size="2">{% if sbmt >= 6 %}{{data4.4}}{% endif %}</font></td>
+                        <td style="height: 70px;"><font size="2">{% if sbmt >= 6 %}{% if data2.4 != 0 %}{{data5.4}}{% endif %}{% endif %}</font></td>
+                        <td><font size="2">{% if sbmt >= 6 %}{{data6.4}}{% endif %}</font></td>
+                    </tr>
+                    <tr>
+                        <td><font size="2">{{data1.5}}</font></td>
+                        <td><font size="2">{% if data2.5 != 0 %}{{data2.5}}{% endif %}</font></td>
+                        <td><font size="2">{% if sbmt >= 3 %}{{data3.5}}{% endif %}</font></td>
+                        <td><font size="2">{% if sbmt >= 6 %}{{data4.5}}{% endif %}</font></td>
+                        <td style="height: 70px;"><font size="2">{% if sbmt >= 6 %}{% if data2.5 != 0 %}{{data5.5}}{% endif %}{% endif %}</font></td>
+                        <td><font size="2">{% if sbmt >= 6 %}{{data6.5}}{% endif %}</font></td>
+                    <tr>
+                        <td><font size="2">{{data1.6}}</font></td>
+                        <td><font size="2">{% if data2.6 != 0 %}{{data2.6}}{% endif %}</font></td>
+                        <td><font size="2">{% if sbmt >= 3 %}{{data3.6}}{% endif %}</font></td>
+                        <td><font size="2">{% if sbmt >= 6 %}{{data4.6}}{% endif %}</font></td>
+                        <td style="height: 70px;"><font size="2">{% if sbmt >= 6 %}{% if data2.6 != 0 %}{{data5.6}}{% endif %}{% endif %}</font></td>
+                        <td><font size="2">{% if sbmt >= 6 %}{{data6.6}}{% endif %}</font></td>
+                    </tr>
+                </table>
+                {% if sbmt == 0 or sbmt == 3 or sbmt == 6 %}
+                    <font color="blue">{{FN}}&nbsp;{{LN}}</font>さんの送信をお待ちください（デモ版では山田課長部下の被評定者メニューの操作は出来ませんので差し戻すとそれ以上操作はありません）<br>
+                {% elif sbmt == 2 or sbmt == 5 or sbmt == 8 %}
+                    <font size="2">承認済みです
+                        {% if sbmt == 2 %}（ホーム画面の人事メニューで期中レビューへ期を変更下さい）{% endif %}
+                        {% if sbmt == 5 %}（ホーム画面の人事メニューで期末レビューへ期を変更下さい）{% endif %}
+                        {% if sbmt == 8 %}（デモ版では当年度の期末レビュー完了までです）{% endif %}
+                    </font><br>
+                    <tr><th><td>
+                        <input type="submit" name="DL" value="ダウンロード" class="button3">
+                    </td></th></tr> 
+                {% else %}
+                    {% if sbmt == 1 %}
+                        目標・ウェイトを確認し承認か差し戻しボタンを押下して下さい。
+                    {% elif sbmt == 4 %}
+                        期中レビューを確認し承認か差し戻しボタンを押下して下さい。
+                    {% else %}
+                        期末レビューを確認し差し戻すか、評価点数と評定者コメントを入力し承認ボタンを押下して下さい。
+                        <br><td><a href="{% url 'edit2' name=EMP %}"><font size="2">評価点数・コメントを入力</font></a></td>
+                    {% endif %}
+                    <br>
+                    <tr><th><td>
+                        <input type="submit" name="DL" value="ダウンロード" class="button3">
+                    </td></th></tr> 
+                    <tr><th><td>
+                        <input type="submit" name="send" value="承認" class="button">
+                    </td></th></tr>   
+                    <tr><th><td>
+                        <input type="submit" name="back" value="差し戻し" class="button4">
+                    </td></th></tr>
+                {% endif %}
+                <br><td><a href="{% url 'sample' %}"><font size="2">人事システムホーム画面に戻る</font></a></td>       
+                </form>
+        {% else %}
+        アクセスをお持ちでありません
+        {% endif %}
+    </body>
+</html>

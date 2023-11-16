@@ -1,0 +1,141 @@
+{% load static %}
+<html lang="ja" dir="ltr">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" 
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/MBO.css' %}">
+</head>
+    <body class="container" ontouchstart="">
+        {% if user.is_authenticated %}
+            <form action="{% url 'editCPA' user.id %}" method="post">
+                <p class="middle"><font color="blue">{{FN}}{{LN}}</font>さんのコンピテンシー評価：本人評価・考察・向上プランを記入し保存して下さい</p>
+                {% csrf_token %}
+                <table border="1" cellspacing="0">
+                    <tr style="background-color: #F0F8FF">
+                        <td class="cpab"><font size="2">コンピテンシー</font></td>
+                        <td class="cpac"><font size="2">コンピテンシー詳細</font></td>
+                        <td class="cpaa"><div class="tooltip3"><font size="2">本人評価</font><div class="description3">3.このような行動はよく見られる<br>2.このような行動が見られることがある<br>1.このような行動はほとんど見られない</div></div></td>
+                        <td class="cpaa"><font size="2">評定者評価</font></td>
+                        <td class="cpa"><font size="2">考察</font></td>
+                        <td class="cpa"><font size="2">向上プラン</font></td>
+                    </tr>
+                    <tr>
+                        <tr><td rowspan="3"><font size="2">{{B1}}</font></td>
+                            <td><font size="2"><div class="pc">{{B2}}</div><div class="tooltip2">詳細<div class="description2">{{B2}}</div></div></td>
+                            <td><font size="2">{{data1.CPA22A1C}}</font></td>
+                            <td><font size="2">{{data2.0}}</font></td>
+                            <td><font size="2">{{data1.CPA22A1K}}</font></td>
+                            <td><font size="2">{{data1.CPA22A1P}}</font></td></tr>
+                        </tr>
+                        <tr><td><font size="2"><div class="pc">{{B3}}</div><div class="tooltip2">詳細<div class="description2">{{B3}}</div></div></td>
+                            <td><font size="2">{{data1.CPA22A2C}}</font></td>
+                            <td><font size="2">{{data2.1}}</font></td>
+                            <td><font size="2">{{data1.CPA22A2K}}</font></td>
+                            <td><font size="2">{{data1.CPA22A2P}}</font></td></tr>
+                        </tr>
+                            <tr><td><font size="2"><div class="pc">{{B4}}</div><div class="tooltip2">詳細<div class="description2">{{B4}}</div></div></td>
+                            <td><font size="2">{{data1.CPA22A3C}}</font></td>
+                            <td><font size="2">{{data2.2}}</font></td>
+                            <td><font size="2">{{data1.CPA22A3K}}</font></td>
+                            <td><font size="2">{{data1.CPA22A3P}}</font></td></tr>
+                        </tr>
+                    </tr>
+                    <tr>
+                        <tr><td rowspan="3"><font size="2">{{B5}}</font></td>
+                            <td><font size="2"><div class="pc">{{B6}}</div><div class="tooltip2">詳細<div class="description2">{{B6}}</div></div></td>
+                            <td><font size="2">{{data1.CPA22B1C}}</font></td>
+                            <td><font size="2">{{data2.3}}</font></td>
+                            <td><font size="2">{{data1.CPA22B1K}}</font></td>
+                            <td><font size="2">{{data1.CPA22B1P}}</font></td></tr>
+                        </tr>
+                        <tr><td><font size="2"><div class="pc">{{B7}}</div><div class="tooltip2">詳細<div class="description2">{{B7}}</div></div></td>
+                            <td><font size="2">{{data1.CPA22B2C}}</font></td>
+                            <td><font size="2">{{data2.4}}</font></td>
+                            <td><font size="2">{{data1.CPA22B2K}}</font></td>
+                            <td><font size="2">{{data1.CPA22B2P}}</font></td></tr>
+                        </tr>
+                        <tr><td><font size="2"><div class="pc">{{B8}}</div><div class="tooltip2">詳細<div class="description2">{{B8}}</div></div></td>
+                            <td><font size="2">{{data1.CPA22B3C}}</font></td>
+                            <td><font size="2">{{data2.5}}</font></td>
+                            <td><font size="2">{{data1.CPA22B3K}}</font></td>
+                            <td><font size="2">{{data1.CPA22B3P}}</font></td></tr>
+                        </tr>
+                    </tr>
+                    <tr>
+                        <tr><td rowspan="3"><font size="2">{{B9}}</font></td>
+                            <td><font size="2"><div class="pc">{{B10}}</div><div class="tooltip2">詳細<div class="description2">{{B10}}</div></div></td>
+                            <td><font size="2">{{data1.CPA22C1C}}</font></td>
+                            <td><font size="2">{{data2.6}}</font></td>
+                            <td><font size="2">{{data1.CPA22C1K}}</font></td>
+                            <td><font size="2">{{data1.CPA22C1P}}</font></td></tr>
+                        </tr>
+                        <tr><td><font size="2"><div class="pc">{{B11}}</div><div class="tooltip2">詳細<div class="description2">{{B11}}</div></div></td>
+                            <td><font size="2">{{data1.CPA22C2C}}</font></td>
+                            <td><font size="2">{{data2.7}}</font></td>
+                            <td><font size="2">{{data1.CPA22C2K}}</font></td>
+                            <td><font size="2">{{data1.CPA22C2P}}</font></td></tr>
+                        </tr>
+                        <tr><td><font size="2"><div class="pc">{{B12}}</div><div class="tooltip2">詳細<div class="description2">{{B12}}</div></div></td>
+                            <td><font size="2">{{data1.CPA22C3C}}</font></td>
+                            <td><font size="2">{{data2.8}}</font></td>
+                            <td><font size="2">{{data1.CPA22C3K}}</font></td>
+                            <td><font size="2">{{data1.CPA22C3P}}</font></td></tr>
+                        </tr>
+                    </tr>
+                    <tr>
+                        <tr><td rowspan="3"><font size="2">{{B13}}</font></td>
+                            <td><font size="2"><div class="pc">{{B14}}</div><div class="tooltip2">詳細<div class="description2">{{B14}}</div></div></td>
+                            <td><font size="2">{{data1.CPA22D1C}}</font></td>
+                            <td><font size="2">{{data2.9}}</font></td>
+                            <td><font size="2">{{data1.CPA22D1K}}</font></td>
+                            <td><font size="2">{{data1.CPA22D1P}}</font></td></tr>
+                        </tr>
+                        <tr><td><font size="2"><div class="pc">{{B15}}</div><div class="tooltip2">詳細<div class="description2">{{B15}}</div></div></td>
+                            <td><font size="2">{{data1.CPA22D2C}}</font></td>
+                            <td><font size="2">{{data2.10}}</font></td>
+                            <td><font size="2">{{data1.CPA22D2K}}</font></td>
+                            <td><font size="2">{{data1.CPA22D2P}}</font></td></tr>
+                        </tr>
+                        <tr><td><font size="2"><div class="pc">{{B16}}</div><div class="tooltip2">詳細<div class="description2">{{B16}}</div></div></td>
+                            <td><font size="2">{{data1.CPA22D3C}}</font></td>
+                            <td><font size="2">{{data2.11}}</font></td>
+                            <td><font size="2">{{data1.CPA22D3K}}</font></td>
+                            <td><font size="2">{{data1.CPA22D3P}}</font></td></tr>
+                        </tr>
+                    </tr>
+                    <tr>
+                        <tr><td rowspan="3"><font size="2">{{B17}}</font></td>
+                        <td><font size="2"><div class="pc">{{B18}}</div><div class="tooltip2">詳細<div class="description2">{{B18}}</div></div></td>
+
+                            <td><font size="2">{{data1.CPA22E1C}}</font></td>
+                            <td><font size="2">{{data2.12}}</font></td>
+                            <td><font size="2">{{data1.CPA22E1K}}</font></td>
+                            <td><font size="2">{{data1.CPA22E1P}}</font></td></tr>
+                        </tr>
+                        <tr><td><font size="2"><div class="pc">{{B19}}</div><div class="tooltip2">詳細<div class="description2">{{B19}}</div></div></td>
+                            <td><font size="2">{{data1.CPA22E2C}}</font></td>
+                            <td><font size="2">{{data2.13}}</font></td>
+                            <td><font size="2">{{data1.CPA22E2K}}</font></td>
+                            <td><font size="2">{{data1.CPA22E2P}}</font></td></tr>
+                        </tr>
+                        <tr><td><font size="2"><div class="pc">{{B20}}</div><div class="tooltip2">詳細<div class="description2">{{B20}}</div></div></td>
+                            <td><font size="2">{{data1.CPA22E3C}}</font></td>
+                            <td><font size="2">{{data2.14}}</font></td>
+                            <td><font size="2">{{data1.CPA22E3K}}</font></td>
+                            <td><font size="2">{{data1.CPA22E3P}}</font></td></tr>
+                        </tr>
+                    </tr>
+                </table>
+                <br><tr><th><td>
+                    <input type="submit" value="保存/戻る" class="button">
+                </td></th></tr>   
+            </form>   
+        {% else %}
+        アクセスをお持ちでありません
+        {% endif %}
+    </body>
+</html>
