@@ -2,11 +2,16 @@ from django.contrib import admin
 from django.urls import re_path
 from django.urls import path
 from . import views
+from .views import register
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('',views.home,name='home'),
-    path('login',views.login,name='login'),
+#    path('login',views.login,name='login'),
     path('GOAL',views.GOAL,name='GOAL'),
+    path('register',views.register,name='register'),
+#    path('register',register.as_view(),name='register'),
     path('GOAL2/<str:name>',views.GOAL2,name='GOAL2'),
     path('GOAL3',views.GOAL3,name='GOAL3'),
     path('GOAL4/<str:name>',views.GOAL4,name='GOAL4'),
@@ -22,3 +27,5 @@ urlpatterns = [
     path('editCPA2/<str:name>',views.editCPA2,name='editCPA2'),
     path('edit2/<str:name>',views.edit2,name='edit2'),
 ]
+
+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

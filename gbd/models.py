@@ -5,11 +5,21 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+type_choices = (('NDA','NDA'),('Evaluation/Material Transfer Agreement','Evaluation/Material Transfer Agreement'),('Distribution Agreement','Distribution Agreement'),('Licensing Agreement','Licensing Agreement'),('etc','etc'))
+
+class Foo(models.Model):
+    name = models.CharField(max_length=100)
+    ctype = models.CharField(max_length=50,choices=type_choices, blank=True)
+    date1 = models.DateField(blank=True, default=0)
+    date2 = models.DateField(blank=True, default=0)
+    upload = models.FileField(upload_to='file/%Y/%m/%d')
 
 class GOAL22(models.Model):
 
     # ユーザー認証のインスタンス(1vs1関係)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    #auther = models.ForeignKey(User, null=True, blank=True)
 
     GOAL22A1 = models.TextField(blank=True)
     GOAL22B1 = models.TextField(blank=True)
@@ -161,6 +171,7 @@ class RHDT(models.Model):
     TIME = models.CharField(max_length=20,choices=time_choices, default='期初目標設定')
     def __str__(self):
         return self.user.username
+
 
 class CPA22(models.Model):
 

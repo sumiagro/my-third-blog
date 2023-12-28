@@ -5,55 +5,19 @@
    <title></title>
    <link rel="stylesheet" href="{% static 'css/MBO.css' %}">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   {{t}}
-   {{s}}
-   <img src="/static/abc.jpg" class="logo"><div class="first">人事システム&nbsp;&nbsp;{{FN}}&nbsp;{{LN}}さんのメニュー</div>
+   <img src="/static/sumiagro.jpg">
 </head>
 {% if user.is_authenticated %}
    <body>
       <form action="{% url 'sample' %}" method="post">
       {% csrf_token %}
       <div class="content">
-         <table>
-            <td class="reverse">
-               <div class="content6"><u>被評定者メニュー</u><br><br>目標管理制度<br></div>
-               <div style="float:left;" class="box"><a href="{% url 'GOAL'%}">2022年度</a></div>
-               <div style="float:left;" class="box">2023年度</div>
-               <br><br><br>
-               <div class="content6">コンピテンシー評価<br></div>
-               <div style="float:left;" class="box"><a href="{% url 'CPA'%}">2022年度</a></div>
-               <div style="float:left;" class="box">2023年度</div>   
-            </td>
-            <td class="reverse">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-            <td class="reverse">
-               <div class="content6"><u>評定者メニュー</u><br><br>目標管理制度<br></div>
-               <div style="float:left;" class="box"><a href="{% url 'homeA'%}">2022年度</a></div>
-               <div style="float:left;" class="box">2023年度</div>
-               <br><br><br>
-               <div class="content6">コンピテンシー評価</div>
-               <div style="float:left;" class="box"><a href="{% url 'homeB'%}">2022年度</a></div>
-               <div style="float:left;" class="box">2023年度</div>   
-            </td>
-            <td class="reverse">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-            <td class="reverse">
-               <div class="content6"><u>人事メニュー（実際製品では授権者にのみ表示）</u><br><br>目標管理制度・コンピテンシー評価　全社員<br></div>
-               <div style="float:left;" class="box"><a href="{% url 'GOAL3'%}">2022年度</a></div>
-               <div style="float:left;" class="box">2023年度</div>
-               <br><br><br>
-               <div class="content6">目標管理制度　期初→期中→期末</div>
-               <div style="float:left;" class="box2">{{data1.TIME}}</div>
-               <div class="box3"><input type="submit" value="期を変更" class="button6"></div>
-               {% if case == 1 %}<div class="box4">期を変更しました</div>{% endif %}
-            </td>
-         </table>
-      {% if user.username == "hyumanozaki" %}
-         <br>
-         <div style="float:left;" class="box"><a href="{% url 'test'%}">2022年度</a></div>
-      {% endif %}
+         <a href="{% url 'GOAL'%}">contract</a><br><br>
+         <a href="{% url 'CPA'%}">meeting minutes</a>
       </div>
       </form>
    </body>
 {% else %}
-   アクセスをお持ちでありません
+   you do not have access
 {% endif %}
 </html>

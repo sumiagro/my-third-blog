@@ -1,10 +1,44 @@
 from django import forms
-from .models import GOAL22,CPA22,RHDT
+from .models import GOAL22,CPA22,RHDT,Foo
 from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+
+User = get_user_model()
+
+
+class FooForm(forms.ModelForm):
+
+    class Meta():
+
+        model = Foo
+        fields = ('name','ctype','date1','date2','upload',)
+        labels = {'name':"supplier name",'ctype':"choose type of contract",'date1':"starting date",'date2':"termination date",'upload':"upload",}
+        widgets = {
+            'name':forms.Textarea({'rows':1, 'cols':30,}),
+            'ctype':forms.Select(),
+            'date1':forms.NumberInput(attrs={'type':'date'}),
+            'date2':forms.NumberInput(attrs={'type':'date'})
+            }
+
+
+#        name = forms.CharField(label='supplier name', widget=forms.TextInput)#(attrs={'class':'form-control'}))
+#        ctype = forms.fields.ChoiceField(
+#            choices = (
+#                ('NDA','NDA'),
+#                ('Evaluation/Material Transfer Agreement','Evaluation/Material Transfer Agreement'),
+#                ('Distribution Agreement','Distribution Agreement'),
+#                ('Licensing Agreement','Licensing Agreement'),
+#                ('etc','etc'),
+#            ),
+#        required = True,
+#            widget=forms.widgets.Select
+#        )
+#        date1 = forms.DateField(label='starting date', widget=forms.NumberInput(attrs={'type':'date'}))
+#        date2 = forms.DateField(label='termination date', widget=forms.NumberInput(attrs={'type':'date'}))
+
 
 class GOAL22Q1Form(forms.ModelForm):
 
@@ -193,3 +227,29 @@ class CPA22AForm(forms.ModelForm):
             'CPA22E3A':forms.Select(attrs={'style': 'width:8ch; border-color:white; background-color:white'}),
             }
 
+class UserForm(UserCreationForm):
+    first_name = forms.CharField()
+#    last_name = forms.CharField()
+    
+    class Meta:
+        model = User
+        fields = ('username','password1','password2','first_name')#,'last_name')
+        widgets={
+            'username':forms.HiddenInput(),
+            'password1':forms.HiddenInput(),
+            'password2':forms.HiddenInput(),
+            }
+        #fsfspassword1 = self.cleaned_data.get("pbkdf2_sha256$260000$IlQCjvIM7Fts6a4trLB6IL$qZRFkY8/SzvF2yFia4VccmWvaNKj5nFZkC4AdeESevM=")
+
+    def save(self, commit = True, uname = "unkown", pword = "unknown"):   
+    # Adding this line solved my problem
+        self.cleaned_data['password1'] = pword
+        user = super(UserForm, self).save(commit = False)
+        if commit:
+            user.save()
+        return user
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        del self.fields['password1']
+        del self.fields['password2']

@@ -9,31 +9,31 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="{% static 'css/MBO.css' %}">
-
-        <title>中小企業向け人事評価・考課システムをクラウド・低価格・初期費用ゼロでカスタムメイド致します</title>
-        <meta name="google-site-verification" content="crJi9ZMgsdKrUjrFHUDZ06MkUeR8qRmF5vVaP8wFNk4" />
-
+        <title>sumiagro</title>
+        <img src="/static/sumiagro.jpg">
     </head>
     <body> 
-        <form action="{% url 'GOAL' %}" method="post">
-            <div class="content3"><font color="blue">中小企業向け人事評価・考課システムをクラウド・低価格・初期費用ゼロでカスタムメイド致します</font></div>
-            <div class="content2">
-            目標管理制度、コンピテンシー評価などの人事機能をエクセル、メール、ワードで行っておりこれをウェブ管理へ移行したい貴社へ
-            そのプラットフォームをご提供差し上げます<br><br>
-            弊社製品コンセプトはシンプル・カスタムメイド・実用的・低価格</br>
-            随時プラットフォームフォーマットの変更や新規機能追加にも対応</br>
-            貴社コストは月額2万5千円のみ（初期費用ゼロ・随時解約可能）</br>
-            研修参加及びその報告や、他にも人事以外の分野も相談可</br>
-            <br>
-            <a href="{% url 'login' %}">弊社製品例デモ
-            </a><br>
-            <br>          
-            お問い合わせは以下までメール下さい<br>
-            practicalweb@outlook.com
-            <br>
+        <div class="content4">
+            Sumi/Summit Agro GBD database<br><br>
+            please input ID and password</div><br>
+            <div class="reg">
+                    <form method="post" action="{% url 'home' %}">
+                  {% csrf_token %}
+      
+                    <table class="reg_form">
+                        <tr>
+                            <td><label for="userid"><font size="2">ID:</font></label></td>
+                            <td><input type="text" name="userid" size="20"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="password"><font size="2">password</font></label></td>
+                            <td><input type="password" name="password" size="20"></td>
+                        </tr>
+                    </table>
+                    <br><input type="submit" class="button5" value="login" style = "font-size:15px;">
+                <br><br><br>
+                    </form>
             </div>
-            <img src="static/top5.jpg" class="sample">        
-        </form>    
     </body>
 
 </html>

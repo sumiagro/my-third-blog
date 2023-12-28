@@ -10,79 +10,31 @@
 </head>
     <body class="container">  
         {% if user.is_authenticated %}
-            <form action="{% url 'GOAL' %}" method="post">
-                <p class="middle"><font color="blue">{{FN}}{{LN}}</font>さんの目標設定・レビュー : 
-                    {% if sbmt == 0 %}編集をクリックし目標・ウェイトを設定して下さい。設定後評定者へ送信ボタンを押下して下さい。{% endif %}
-                    {% if sbmt == 2 %}編集をクリックし期中レビューに上期の進捗を入力し、入力後評定者へ送信ボタンを押下して下さい。{% endif %}
-                    {% if sbmt == 4 %}編集をクリックし期末レビューに通期で行ったことを入力し、入力後評定者へ送信ボタンを押下して下さい。{% endif %}
-                </p>                
+            <form enctype="multipart/form-data" action="{% url 'GOAL' %}" method="post">
                 {% csrf_token %}
-                <table border="1" cellspacing="0">
-                    <tr style="background-color: #F0F8FF">
-                        <td class="goal"><font size="2">期初目標設定</font></td>
-                        <td class="goala"><font size="2">ウェイト%</font></td>
-                        <td class="goal"><font size="2">期中レビュー</font></td>
-                        <td class="goal"><font size="2">期末レビュー</font></td>
-                        <td class="goala"><font size="2">評価点数</font></td>
-                        <td class="goal"><font size="2">評定者コメント</font></td>
+                    {{response}}<br>
+                    {{form}}
+                    <input type="submit" name="register" value="register" class="button3">
+                    <br><br>
+                    <table border="1" cellspacing="0">
+                        <tr style="background-color: #F0F8FF">
+                        <td class="goal"><font size="2">supplier</font></td>
+                        <td class="goala"><font size="2">type of contract</font></td>
+                        <td class="goal"><font size="2">starting date</font></td>
+                        <td class="goal"><font size="2">date of end</font></td>
+                        <td class="goala"><font size="2">download</font></td>
                     </tr>
-                    <tr>
-                        <td class="goal" style="height: 70px;"><font size="2">{{data1.0}}</font></td>
-                        <td><font size="2">{% if data2.0 != 0 %}{{data2.0}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 2 %}{{data3.0}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 4 %}{{data4.0}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 5 %}{% if data2.0 != 0 %}{{data5.0}}{% endif %}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 5 %}{{data6.0}}{% endif %}</font></td>
-                    </tr>
-                    <tr>
-                        <td style="height: 70px;"><font size="2">{{data1.1}}</font></td>
-                        <td><font size="2">{% if data2.1 != 0 %}{{data2.1}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 2 %}{{data3.1}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 4 %}{{data4.1}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 5 %}{% if data2.1 != 0 %}{{data5.1}}{% endif %}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 5 %}{{data6.1}}{% endif %}</font></td>
-                    </tr>                    
-                    <tr>
-                        <td style="height: 70px;"><font size="2">{{data1.2}}</font></td>
-                        <td><font size="2">{% if data2.2 != 0 %}{{data2.2}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 2 %}{{data3.2}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 4 %}{{data4.2}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 5 %}{% if data2.2 != 0 %}{{data5.2}}{% endif %}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 5 %}{{data6.2}}{% endif %}</font></td>
-                    </tr>
-                    <tr>
-                        <td style="height: 70px;"><font size="2">{{data1.3}}</font></td>
-                        <td><font size="2">{% if data2.3 != 0 %}{{data2.3}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 2 %}{{data3.3}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 4 %}{{data4.3}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 5 %}{% if data2.3 != 0 %}{{data5.3}}{% endif %}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 5 %}{{data6.3}}{% endif %}</font></td>
-                    </tr>
-                    <tr>
-                        <td style="height: 70px;"><font size="2">{{data1.4}}</font></td>
-                        <td><font size="2">{% if data2.4 != 0 %}{{data2.4}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 2 %}{{data3.4}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 4 %}{{data4.4}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 5 %}{% if data2.4 != 0 %}{{data5.4}}{% endif %}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 5 %}{{data6.4}}{% endif %}</font></td>
-                    </tr>
-                    <tr>
-                        <td style="height: 70px;"><font size="2">{{data1.5}}</font></td>
-                        <td><font size="2">{% if data2.5 != 0 %}{{data2.5}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 2 %}{{data3.5}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 4 %}{{data4.5}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 5 %}{% if data2.5 != 0 %}{{data5.5}}{% endif %}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 5 %}{{data6.5}}{% endif %}</font></td>
-                   </tr>
-                    <tr>
-                        <td style="height: 70px;"><font size="2">{{data1.6}}</font></td>
-                        <td><font size="2">{% if data2.6 != 0 %}{{data2.6}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 2 %}{{data3.6}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 4 %}{{data4.6}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 5 %}{% if data2.6 != 0 %}{{data5.6}}{% endif %}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 5 %}{{data6.6}}{% endif %}</font></td>
-                   </tr>
+                    {% for item in data %}
+                        <tr>
+                            <td class="goal" style="height: 20px;"><font size="2">{{item.name}}</font></td>
+                            <td><font size="2">{{item.ctype}}</font></td>
+                            <td><font size="2">{{item.date1}}</font></td>
+                            <td><font size="2">{{item.date2}}</font></td>
+                            <td><a href="{{ item.upload.url }}" download="{{ item.upload }}">click</a></td>
+                        </tr>
+                    {% endfor %}
                 </table>
+                <td><font size="2"><input type="submit" name={{item}} value="ダウンロード"></font></td>
                 {% if sbmt == 0 or sbmt == 2 or sbmt == 4 %}
                     <td><a href="{% url 'edit' user.id %}"><font size="2">編集する</font></a></td>
                     <br>
@@ -93,17 +45,13 @@
                         <input type="submit" name="send" value="評定者に送信" class="button">
                     </td></th></tr>   
                 {% else %}
-                    <font size="2">評定者に送信済み
-                        {% if sbmt == 1 %}（デモ版では山田課長の上司による承認プロセスは無くホーム画面の人事メニューで期中レビューへ期を変更下さい）{% endif %}
-                        {% if sbmt == 3 %}（デモ版では山田課長の上司による承認プロセスは無くホーム画面の人事メニューで期末レビューへ期を変更下さい）{% endif %}
-                        {% if sbmt == 5 %}（デモ版では山田課長の上司による承認プロセスは無いので送信と同時に承認され評価点数・評定者コメントも表示されるようにしております）{% endif %}
-                    </font><br>
                     <tr><th><td>
                         <input type="submit" name="DL" value="ダウンロード" class="button3">
                     </td></th></tr> 
                 {% endif %}
-                <br><td><a href="{% url 'sample' %}"><font size="2">人事システムホーム画面に戻る</font></a></td>       
-                </form>
+                <br><td><a href="{% url 'sample' %}"><font size="2">back to home</font></a></td>       
+                <br><td><a href="{% url 'register' %}"><font size="2">register</font></a></td>       
+            </form>
         {% else %}
         アクセスをお持ちでありません
         {% endif %}

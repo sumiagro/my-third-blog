@@ -1,0 +1,32 @@
+{% load static %}
+<html lang="ja" dir="ltr">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" 
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/MBO.css' %}">
+</head>
+    <body class="container">  
+        {% if user.is_authenticated %}
+            <form action="{% url 'register' %}" method="post">
+                {% csrf_token %}
+                <br>{{j}}{{k}}
+                <br>{{form.username}}
+                <br>
+                <br>please input yout password to permit edition
+                <br>{{form.password1}}
+                <br>please input yout password to permit edition again
+                <br>{{form.password2}}
+                <br>
+                <br>please input supplier's name
+                <br>{{form.first_name}}
+                <input type="submit" name="DL" value="register" class="button3">
+                <br><td><a href="{% url 'sample' %}"><font size="2">back to home</font></a></td>       
+            </form>
+        {% else %}
+        アクセスをお持ちでありません
+        {% endif %}
+    </body>
+</html>
