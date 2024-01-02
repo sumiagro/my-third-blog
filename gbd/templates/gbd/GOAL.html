@@ -12,12 +12,7 @@
         {% if user.is_authenticated %}
             <form enctype="multipart/form-data" action="{% url 'GOAL' %}" method="post">
                 {% csrf_token %}
-                    <font color="green">{{response}}</font><br>
-                    supplier name {{form.name}} please choose contract type {{form.ctype}}
-                    <br>starting date{{form.date1}} termination date{{form.date2}}
-                    <br>please upload the file{{form.upload}}
-                    <input type="submit" name="register" value="upload" class="button3">
-                    <br><br>
+                    <td><a href="{% url 'sample' %}"><font size="2">back to home</font></a></td>       
                     <table border="1" cellspacing="0">
                         <tr style="background-color: #F0F8FF">
                         <td style="width: 250px;"><font size="2">supplier</font></td>
@@ -36,7 +31,12 @@
                         </tr>
                     {% endfor %}
                 </table>
-                <br><td><a href="{% url 'sample' %}"><font size="2">back to home</font></a></td>       
+                <br><font color="green">{{response}}</font><br>
+                supplier name {{form.name}} please choose contract type {{form.ctype}}
+                <br>starting date{{form.date1}} termination date{{form.date2}}
+                <br>please upload the file{{form.upload}}
+                <input type="submit" name="register" value="upload" class="button3">
+                <br><br>
             </form>
         {% else %}
             you do not have any access

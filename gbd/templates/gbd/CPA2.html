@@ -14,7 +14,7 @@
                 {% csrf_token %}
                 <font color="green">{{text}}</font>
                 {% for item in object_list %}
-                    <br>{{item.name}}&nbsp;&nbsp;&nbsp;
+                    <br>{{item.name}}&nbsp;&nbsp;&nbsp;{{item.date}}&nbsp;&nbsp;&nbsp;
                     <input type="submit" name="{{item.id}}" value="delete">
                 {% endfor %}
                 <br><td><a href="{% url 'sample' %}"><font size="2">back to home</font></a></td>       
