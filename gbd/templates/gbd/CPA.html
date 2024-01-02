@@ -1,5 +1,5 @@
 {% load static %}
-<html lang="ja" dir="ltr">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
     <title></title>
@@ -10,144 +10,42 @@
 </head>
     <body class="container" ontouchstart="">  
         {% if user.is_authenticated %}
-            <form action="{% url 'CPA' %}" method="post">
-                <p class="middle"><font color="blue">{{FN}}{{LN}}</font>さんのコンピテンシー評価 
-                    {% if sbmt == 0 %}: 編集をクリックし本人評価と向上プランを記入し、評定者へ送信ボタンを押下して下さい。{% endif %}</p>                
+            <form enctype="multipart/form-data" action="{% url 'CPA' %}" method="post">
                 {% csrf_token %}
+                <br><td><a href="{% url 'sample' %}"><font size="2">back to home</font></a></td>       
                 <table border="1" cellspacing="0">
                     <tr style="background-color: #F0F8FF">
-                        <td class="cpab"><font size="3">コンピテンシー</font></td>
-                        <td class="cpa"><font size="3">コンピテンシー詳細</font></td>
-                        <td class="cpaa"><div class="tooltip3"><font size="3">本人評価</font><div class="description3">3.このような行動はよく見られる<br>2.このような行動が見られることがある<br>1.このような行動はほとんど見られない</div></div></td>
-                        <td class="cpaa"><font size="3">評定者評価</font></td>
-                        <td class="cpa"><font size="3">考察</font></td>
-                        <td class="cpa"><font size="3">向上プラン</font></td>
-                    </tr>
+                    <td style="width: 150px;"><font size="2">supplier name</font></td>
+                    <td style="width: 250px;"><font size="2">participant from supplier</font></td>
+                    <td style="width: 250px;"><font size="2">participant from Sumi/Summit Agro</font></td>
+                    <td style="width: 100px;"><font size="2">meeting date</font></td>
+                    <td style="width: 200px;"><font size="2">meeting minutes</font></td>
+                    <td style="width: 100px;"><font size="2">material download</font></td>
+                </tr>
+                {% for item in data reversed %}
                     <tr>
-                        <tr><td rowspan="3"><font size="1">{{B1}}</font></td>
-                            <td><font size="1">{{B2}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.0}}</font></td>
-                            <td><font size="1">{{data2.0}}</font></td>
-                            <td><font size="1">{{data3.0}}</font></td>
-                            <td><font size="1">{{data4.0}}</font></td></tr>
-                        </tr>
-                        <tr><td><font size="1">{{B3}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.1}}</font></td>
-                            <td><font size="1">{{data2.1}}</font></td>
-                            <td><font size="1">{{data3.1}}</font></td>
-                            <td><font size="1">{{data4.1}}</font></td></tr>
-                        </tr>
-                        <tr><td><font size="1">{{B4}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.2}}</font></td>
-                            <td><font size="1">{{data2.2}}</font></td>
-                            <td><font size="1">{{data3.2}}</font></td>
-                            <td><font size="1">{{data4.2}}</font></td></tr>
-                        </tr>
+                        <td style="height: 20px;"><font size="2">{{item.name}}</font></td>
+                        <td><font size="2">{{item.participant1}}</font></td>
+                        <td><font size="2">{{item.participant2}}</font></td>
+                        <td><font size="2">{{item.date}}</font></td>
+                        <td><a href="{% url 'edit2' num=item.id %}">click here to read the details</a></td>
+                        {% if item.material == '' %}
+                            <td></td>
+                        {% else %}
+                            <td><a href="{{ item.material.url }}" download="{{ item.material }}">click</a></td>
+                        {% endif %}
                     </tr>
-                    <tr>
-                        <tr><td rowspan="3"><font size="1">{{B5}}</font></td>
-                            <td><font size="1">{{B6}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.3}}</font></td>
-                            <td><font size="1">{{data2.3}}</font></td>
-                            <td><font size="1">{{data3.3}}</font></td>
-                            <td><font size="1">{{data4.3}}</font></td></tr>
-                        </tr>
-                        <tr><td><font size="1">{{B7}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.4}}</font></td>
-                            <td><font size="1">{{data2.4}}</font></td>
-                            <td><font size="1">{{data3.4}}</font></td>
-                            <td><font size="1">{{data4.4}}</font></td></tr>
-                        </tr>
-                        <tr><td><font size="1">{{B8}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.5}}</font></td>
-                            <td><font size="1">{{data2.5}}</font></td>
-                            <td><font size="1">{{data3.5}}</font></td>
-                            <td><font size="1">{{data4.5}}</font></td></tr>
-                        </tr>
-                    </tr>
-                    <tr>
-                        <tr><td rowspan="3"><font size="1">{{B9}}</font></td>
-                            <td><font size="1">{{B10}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.6}}</font></td>
-                            <td><font size="1">{{data2.6}}</font></td>
-                            <td><font size="1">{{data3.6}}</font></td>
-                            <td><font size="1">{{data4.6}}</font></td></tr>
-                        </tr>
-                        <tr><td><font size="1">{{B11}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.7}}</font></td>
-                            <td><font size="1">{{data2.7}}</font></td>
-                            <td><font size="1">{{data3.7}}</font></td>
-                            <td><font size="1">{{data4.7}}</font></td></tr>
-                        </tr>
-                        <tr><td><font size="1">{{B12}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.8}}</font></td>
-                            <td><font size="1">{{data2.8}}</font></td>
-                            <td><font size="1">{{data3.8}}</font></td>
-                            <td><font size="1">{{data4.8}}</font></td></tr>
-                        </tr>
-                    </tr>
-                    <tr>
-                        <tr><td rowspan="3"><font size="1">{{B13}}</font></td>
-                            <td><font size="1">{{B14}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.9}}</font></td>
-                            <td><font size="1">{{data2.9}}</font></td>
-                            <td><font size="1">{{data3.9}}</font></td>
-                            <td><font size="1">{{data4.9}}</font></td></tr>
-                        </tr>
-                        <tr><td><font size="1">{{B15}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.10}}</font></td>
-                            <td><font size="1">{{data2.10}}</font></td>
-                            <td><font size="1">{{data3.10}}</font></td>
-                            <td><font size="1">{{data4.10}}</font></td></tr>
-                        </tr>
-                        <tr><td><font size="1">{{B16}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.11}}</font></td>
-                            <td><font size="1">{{data2.11}}</font></td>
-                            <td><font size="1">{{data3.11}}</font></td>
-                            <td><font size="1">{{data4.11}}</font></td></tr>
-                        </tr>
-                    </tr>
-                    <tr>
-                        <tr><td rowspan="3"><font size="1">{{B17}}</font></td>
-                            <td><font size="1">{{B18}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.12}}</font></td>
-                            <td><font size="1">{{data2.12}}</font></td>
-                            <td><font size="1">{{data3.12}}</font></td>
-                            <td><font size="1">{{data4.12}}</font></td></tr>
-                        </tr>
-                        <tr><td><font size="1">{{B19}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.13}}</font></td>
-                            <td><font size="1">{{data2.13}}</font></td>
-                            <td><font size="1">{{data3.13}}</font></td>
-                            <td><font size="1">{{data4.13}}</font></td></tr>
-                        </tr>
-                        <tr><td><font size="1">{{B20}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.14}}</font></td>
-                            <td><font size="1">{{data2.14}}</font></td>
-                            <td><font size="1">{{data3.14}}</font></td>
-                            <td><font size="1">{{data4.14}}</font></td></tr>
-                        </tr>
-                    </tr>
+                {% endfor %}
                 </table>
-                {% if sbmt == 0 %}
-                    <td><a href="{% url 'editCPA' user.id %}"><font size="2">編集する</font></a></td>
-                    <br>
-                    <tr><th><td>
-                        <input type="submit" name="DL" value="ダウンロード" class="button3">
-                    </td></th></tr> 
-                    <tr><th><td>
-                        <input type="submit" name="send" value="評定者に送信" class="button">
-                    </td></th></tr>   
-                {% else %}
-                    <font size="2">評定者に送信済みです（デモ版では山田課長の評定者による承認プロセスはないのでこちらで完了です）</font><br>
-                    <tr><th><td>
-                        <input type="submit" name="DL" value="ダウンロード" class="button3">
-                    </td></th></tr> 
-                    {% endif %}
-                <br><td><a href="{% url 'sample' %}"><font size="2">人事システムホーム画面に戻る</font></a></td>       
-                </form>
+                <font color="green">{{response}}</font>
+                <br>supplier name {{form.name}} meeting date{{form.date}}
+                <br>participant from supplier {{form.participant1}} participant from Sumi/Summit Agro {{form.participant2}}
+                <br>meeting minutes{{form.detail}}
+                <br>please upload if any meeting material (only 1 can be uploaded) {{form.material}}
+                <br><input type="submit" name="register" value="upload" class="button3">
+            </form>
         {% else %}
-        アクセスをお持ちでありません
+            you do not have any access
         {% endif %}
     </body>
 </html>

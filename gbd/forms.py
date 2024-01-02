@@ -1,5 +1,5 @@
 from django import forms
-from .models import GOAL22,CPA22,RHDT,Foo
+from .models import GOAL22,CPA22,RHDT,Foo, MM, senha
 from django.core.exceptions import ValidationError
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate
@@ -7,6 +7,93 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 User = get_user_model()
+
+class senhaForm(forms.ModelForm):
+    class Meta():
+        model = senha
+        fields = ('name','senha')
+        widgets = {
+            'name':forms.Textarea({'rows':1, 'cols':30,}),
+            'senha':forms.Textarea({'rows':1, 'cols':30,}),
+        }
+
+class UserForm(UserCreationForm):
+#    first_name = forms.CharField()
+#    last_name = forms.CharField()
+    
+    class Meta:
+        model = User
+        fields = ('username','password1','password2')#,'first_name')#,'last_name')
+#        widgets={
+#            'first_name':forms.HiddenInput(),
+#            'username':forms.HiddenInput(),
+#            'password1':forms.HiddenInput(),
+#            'password2':forms.HiddenInput(),
+#            }
+        #fsfspassword1 = self.cleaned_data.get("pbkdf2_sha256$260000$IlQCjvIM7Fts6a4trLB6IL$qZRFkY8/SzvF2yFia4VccmWvaNKj5nFZkC4AdeESevM=")
+
+#    def save(self, commit = True, uname = "unknown", first_name = "unkown"):   
+#        self.cleaned_data['first_name'] = first_name
+#        user = super(UserForm, self).save(commit = False)
+#        if commit:
+#            user.save()
+#        return user
+
+#    def __init__(self, *args, **kwargs):
+#        super().__init__(*args, **kwargs)
+#        del self.fields['first_name']
+
+#    def save(self, commit = True, uname = "unkown", pword = "unknown"):   
+    # Adding this line solved my problem
+#        self.cleaned_data['password1'] = pword
+#        user = super(UserForm, self).save(commit = False)
+#        if commit:
+#            user.save()
+#        return user
+
+#    def __init__(self, *args, **kwargs):
+#        super().__init__(*args, **kwargs)
+#        del self.fields['password1']
+#        del self.fields['password2']
+
+class UserForm2(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('username','password1','password2')
+        widgets={
+            'username':forms.HiddenInput(),
+            'password1':forms.HiddenInput(),
+            'password2':forms.HiddenInput(),
+            }
+        #password1 = self.cleaned_data.get("pbkdf2_sha256$260000$IlQCjvIM7Fts6a4trLB6IL$qZRFkY8/SzvF2yFia4VccmWvaNKj5nFZkC4AdeESevM=")
+
+    def save(self, commit = True, uname = "unkown", pword = "unknown"):   
+        self.cleaned_data['password1'] = pword
+        user = super(UserForm2, self).save(commit = False)
+        if commit:
+            user.save()
+        return user
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        del self.fields['password1']
+        del self.fields['password2']
+
+
+class MMForm(forms.ModelForm):
+
+    class Meta():
+
+        model = MM
+        fields = ('name','participant1','participant2','date','detail','material')
+        widgets = {
+            'name':forms.Textarea({'rows':1, 'cols':30,}),
+            'participant1':forms.Textarea({'rows':1, 'cols':30,}),
+            'participant2':forms.Textarea({'rows':1, 'cols':30,}),
+            'date':forms.NumberInput(attrs={'type':'date'}),
+            'detail':forms.Textarea({'rows':10, 'cols':150,}),
+            'material':forms.FileInput(attrs={'placeholder':'please upload the file','label':"please upload the file"})
+            }
 
 
 class FooForm(forms.ModelForm):
@@ -20,7 +107,8 @@ class FooForm(forms.ModelForm):
             'name':forms.Textarea({'rows':1, 'cols':30,}),
             'ctype':forms.Select(),
             'date1':forms.NumberInput(attrs={'type':'date'}),
-            'date2':forms.NumberInput(attrs={'type':'date'})
+            'date2':forms.NumberInput(attrs={'type':'date'}),
+            'upload':forms.FileInput(attrs={'placeholder':'please upload the file','label':"please upload the file"})
             }
 
 
@@ -227,29 +315,3 @@ class CPA22AForm(forms.ModelForm):
             'CPA22E3A':forms.Select(attrs={'style': 'width:8ch; border-color:white; background-color:white'}),
             }
 
-class UserForm(UserCreationForm):
-    first_name = forms.CharField()
-#    last_name = forms.CharField()
-    
-    class Meta:
-        model = User
-        fields = ('username','password1','password2','first_name')#,'last_name')
-        widgets={
-            'username':forms.HiddenInput(),
-            'password1':forms.HiddenInput(),
-            'password2':forms.HiddenInput(),
-            }
-        #fsfspassword1 = self.cleaned_data.get("pbkdf2_sha256$260000$IlQCjvIM7Fts6a4trLB6IL$qZRFkY8/SzvF2yFia4VccmWvaNKj5nFZkC4AdeESevM=")
-
-    def save(self, commit = True, uname = "unkown", pword = "unknown"):   
-    # Adding this line solved my problem
-        self.cleaned_data['password1'] = pword
-        user = super(UserForm, self).save(commit = False)
-        if commit:
-            user.save()
-        return user
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        del self.fields['password1']
-        del self.fields['password2']

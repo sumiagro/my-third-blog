@@ -1,5 +1,5 @@
 {% load static %}
-<html lang="ja" dir="ltr">
+<html lang="en" dir="ltr">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <meta charset="utf-8">
@@ -10,82 +10,25 @@
 </head>
     <body class="container">  
         {% if user.is_authenticated %}
-            <form action="{% url 'GOAL4' name=EMP %}" method="post">
-                <p class="middle"><font color="blue">{{FN}}&nbsp;{{LN}}</font>さんの目標設定・レビュー （評定者:<font color="blue">{{FN2}}&nbsp;{{LN2}}さん</font>）</p>                
+            <form action="{% url 'GOAL4' %}" method="post">
                 {% csrf_token %}
-                <table border="1" cellspacing="0">
-                    <tr style="background-color: #F0F8FF">
-                        <td class="goal"><font size="2">期初目標設定</font></td>
-                        <td class="goala"><font size="2">ウェイト%</font></td>
-                        <td class="goal"><font size="2">期中レビュー</font></td>
-                        <td class="goal"><font size="2">期末レビュー</font></td>
-                        <td class="goala"><font size="2">評価点数</font></td>
-                        <td class="goal"><font size="2">評定者コメント</font></td>
-                    </tr>
-                    <tr>
-                        <td><font size="2">{{data1.0}}</font></td>
-                        <td><font size="2">{% if data2.0 != 0 %}{{data2.0}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 1 %}{{data3.0}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 2 %}{{data4.0}}{% endif %}</font></td>
-                        <td style="height: 70px;"><font size="2">{% if sbmt >= 2 %}{% if data2.0 != 0 %}{{data5.0}}{% endif %}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 2 %}{{data6.0}}{% endif %}</font></td>
-                    </tr>
-                    <tr>
-                        <td><font size="2">{{data1.1}}</font></td>
-                        <td><font size="2">{% if data2.1 != 0 %}{{data2.1}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 1 %}{{data3.1}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 2 %}{{data4.1}}{% endif %}</font></td>
-                        <td style="height: 70px;"><font size="2">{% if sbmt >= 2 %}{% if data2.1 != 0 %}{{data5.1}}{% endif %}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 2 %}{{data6.1}}{% endif %}</font></td>
-                    </tr>                    
-                    <tr>
-                        <td><font size="2">{{data1.2}}</font></td>
-                        <td><font size="2">{% if data2.2 != 0 %}{{data2.2}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 1 %}{{data3.2}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 2 %}{{data4.2}}{% endif %}</font></td>
-                        <td style="height: 70px;"><font size="2">{% if sbmt >= 2 %}{% if data2.2 != 0 %}{{data5.2}}{% endif %}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 2 %}{{data6.2}}{% endif %}</font></td>
-                    </tr>
-                    <tr>
-                        <td><font size="2">{{data1.3}}</font></td>
-                        <td><font size="2">{% if data2.3 != 0 %}{{data2.3}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 1 %}{{data3.3}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 2 %}{{data4.3}}{% endif %}</font></td>
-                        <td style="height: 70px;"><font size="2">{% if sbmt >= 2 %}{% if data2.3 != 0 %}{{data5.3}}{% endif %}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 2 %}{{data6.3}}{% endif %}</font></td>
-                    </tr>
-                    <tr>
-                        <td><font size="2">{{data1.4}}</font></td>
-                        <td><font size="2">{% if data2.4 != 0 %}{{data2.4}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 1 %}{{data3.4}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 2 %}{{data4.4}}{% endif %}</font></td>
-                        <td style="height: 70px;"><font size="2">{% if sbmt >= 2 %}{% if data2.4 != 0 %}{{data5.4}}{% endif %}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 2 %}{{data6.4}}{% endif %}</font></td>
-                    </tr>
-                    <tr>
-                        <td><font size="2">{{data1.5}}</font></td>
-                        <td><font size="2">{% if data2.5 != 0 %}{{data2.5}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 1 %}{{data3.5}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 2 %}{{data4.5}}{% endif %}</font></td>
-                        <td style="height: 70px;"><font size="2">{% if sbmt >= 2 %}{% if data2.5 != 0 %}{{data5.5}}{% endif %}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 2 %}{{data6.5}}{% endif %}</font></td>
-                    <tr>
-                        <td><font size="2">{{data1.6}}</font></td>
-                        <td><font size="2">{% if data2.6 != 0 %}{{data2.6}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 1 %}{{data3.6}}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 2 %}{{data4.6}}{% endif %}</font></td>
-                        <td style="height: 70px;"><font size="2">{% if sbmt >= 2 %}{% if data2.6 != 0 %}{{data5.6}}{% endif %}{% endif %}</font></td>
-                        <td><font size="2">{% if sbmt >= 2 %}{{data6.6}}{% endif %}</font></td>
-                    </tr>
-                </table>
-                <br>
-                <tr><th><td>
-                    <input type="submit" name="DL" value="ダウンロード" class="button3">
-                </td></th></tr> 
-                <br><td><a href="{% url 'GOAL3' %}"><font size="2">戻る</font></a></td>       
+                <br><td><a href="{% url 'sample' %}"><font size="2">back to home</font></a></td>
+                <br><input type="submit" name="upload" value="recover contracts">
+                <br>{{data}}
+                <br>{{CC}}
+                {% for item in obj %}
+                    <br>{{item.name}}
+                    <br>{{item.ctype}}
+                    <br>{{item.date1.year}}-{{item.date1.month}}-{{item.date1.day}}
+                    <br>{{item.date2.year}}-{{item.date2.month}}-{{item.date2.day}}
+                    <br><a href="{{ item.upload.url }}" download="{{ item.upload }}">{{item.upload}}</a></td>
+                {% endfor %}
+                {% for item in obj %}
+                    <br><a href="{{ item.upload.url }}" download="{{ item.upload }}">{{item.upload}}</a></td>
+                {% endfor %}
                 </form>
         {% else %}
-        アクセスをお持ちでありません
+            you have no access
         {% endif %}
     </body>
 </html>

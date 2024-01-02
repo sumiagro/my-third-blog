@@ -10,17 +10,14 @@
 </head>
     <body class="container">  
         {% if user.is_authenticated %}
-            <form action="{% url 'GOAL2' %}" method="post">
+            <form action="{% url 'register2' %}" method="post">
                 {% csrf_token %}
-                <font color="green">{{text}}</font>
-                {% for item in object_list %}
-                    <br>{{item.username}}&nbsp;&nbsp;&nbsp;
-                    <input type="submit" name="{{item.id}}" value="delete">
-                {% endfor %}
+                <br>{{form}}
+                <input type="submit" name="DL" value="register" class="button3">
                 <br><td><a href="{% url 'sample' %}"><font size="2">back to home</font></a></td>       
             </form>
         {% else %}
-            you have not access
+        アクセスをお持ちでありません
         {% endif %}
     </body>
 </html>

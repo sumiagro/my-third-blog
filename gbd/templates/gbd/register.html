@@ -12,21 +12,26 @@
         {% if user.is_authenticated %}
             <form action="{% url 'register' %}" method="post">
                 {% csrf_token %}
-                <br>{{j}}{{k}}
+                <u>current registered users</u>
+                {% for item in object_list %}
+                <br>{{item.username}}
+                {% endfor %}
+                <br><br>
+                <font color="green">{{text}}</font>
+                <br>
+                <br>please input e-mail address of the new person
                 <br>{{form.username}}
                 <br>
-                <br>please input yout password to permit edition
+                <br>please input his password 
                 <br>{{form.password1}}
-                <br>please input yout password to permit edition again
+                <br>once more please input the password for confirmation
                 <br>{{form.password2}}
                 <br>
-                <br>please input supplier's name
-                <br>{{form.first_name}}
                 <input type="submit" name="DL" value="register" class="button3">
                 <br><td><a href="{% url 'sample' %}"><font size="2">back to home</font></a></td>       
             </form>
         {% else %}
-        アクセスをお持ちでありません
+            you have no access
         {% endif %}
     </body>
 </html>

@@ -11,13 +11,19 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
         {% if user.is_authenticated %}
             <form action="{% url 'test' %}" method="post">
                 {% csrf_token %}
-                    <tr><th><td>
-                        <input type="submit" value="評定者に送信" class="button">
-                    </td></th></tr>   
-                <br><td><a href="{% url 'sample' %}"><font size="2">人事システムホーム画面に戻る</font></a></td>       
+                <font color="green">{{text}}</font>
+                <br>{{AA1}}
+                <br>{{AA2}}
+                <br>{{AA3}}
+                <br><input type="submit" name="upload" value="recover users">
+                <br><td><a href="{% url 'sample' %}"><font size="2">back to home</font></a></td>       
+                {% for item in object_list %}
+                    <br>{{item.username}}
+                    <br>{{item.first_name}}
+                {% endfor %}
             </form>
         {% else %}
-        アクセスをお持ちでありません
+            you have no access
         {% endif %}
     </body>
 </html>

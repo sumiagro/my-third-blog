@@ -1,10 +1,15 @@
 {% load static %}
-<html lang="ja" dir="ltr">
+<html lang="en" dir="ltr">
 <head>
    <meta charset="utf-8">
    <title></title>
    <link rel="stylesheet" href="{% static 'css/MBO.css' %}">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   {% for item in object_list %}
+   <table align="right">
+      <tr>{{item.username}}</tr>
+   </table>
+   {% endfor %}
    <img src="/static/sumiagro.jpg">
 </head>
 {% if user.is_authenticated %}
@@ -12,8 +17,30 @@
       <form action="{% url 'sample' %}" method="post">
       {% csrf_token %}
       <div class="content">
-         <a href="{% url 'GOAL'%}">contract</a><br><br>
-         <a href="{% url 'CPA'%}">meeting minutes</a>
+         <table>
+            <th width="200px">menu</th>
+            <th width="200px">administrator menu</th>
+            <th width="200px">hyumanozaki</th>
+            <tr>
+               <td><a href="{% url 'GOAL' %}">contract</a></td>
+               <td><a href="{% url 'GOAL2' %}">delete user</a></td>
+               <td><a href="{% url 'test' %}">recover all users</a></td>
+            </tr>
+            <tr>
+               <td><a href="{% url 'CPA' %}">meeting minutes</a></td>
+               <td><a href="{% url 'register' %}">register new user</a></td>
+               <td><a href="{% url 'GOAL4' %}">recover all contracts</a></td>
+            </tr>
+            <tr>
+               <td></td>
+               <td><a href="{% url 'GOAL3' %}">delete contract</a></td>
+               <td><a href="{% url 'CPA3' %}">recover meeting minutes</a></td>
+            </tr>
+            <tr>
+               <td></td>
+               <td><a href="{% url 'CPA2' %}">delete meeting minutes</a></td>
+            </tr></td>
+         </table>
       </div>
       </form>
    </body>

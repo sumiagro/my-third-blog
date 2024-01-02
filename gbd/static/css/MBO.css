@@ -1,8 +1,11 @@
+.MMpop {
+    white-space: pre-wrap;
+    line-height: 10px;
+}
+
 .logo {
     position : absolute;
-    height : 50px;
-    width : 50px;
-    margin-left: 40px;
+    left: 400pt;
     top : 2%;
 }
 
@@ -210,8 +213,10 @@ h1, h2, h3, h4 {
 .tooltip1 p{
     margin:0;
     padding:0;
+    position: relative;
 }
 .description1 {
+    white-space: pre-wrap;
     display: none;
     position: absolute;
     padding: 10px;
@@ -220,21 +225,21 @@ h1, h2, h3, h4 {
     color: #fff;
     border-radius: 5px;
     background: #000;
-    width: 100px;
+    width: 600px;
 }
 .description1:before {
     content: "";
     position: absolute;
-    top: 100%;
-    left: 50%;
+    top: 0%;
+    right: 95%;
     border: 15px solid transparent;
     border-top: 15px solid #000;
     margin-left: -15px;
 }
 .tooltip1:hover .description1{
     display: inline-block;
-    top: -70px;
-    left: -30px;
+    right: 105%;
+    bottom: 100%;
 }
 
 .tooltip3{

@@ -10,152 +10,17 @@
 </head>
     <body class="container" ontouchstart="">  
         {% if user.is_authenticated %}
-            <form action="{% url 'CPA2' name=EMP %}" method="post">
-                <p class="middle"><font color="blue">{{FN}}&nbsp;{{LN}}</font>さんのコンピテンシー評価 （評定者:<font color="blue">{{FN2}}&nbsp;{{LN2}}さん</font>）</p>                
+            <form action="{% url 'CPA2' %}" method="post">
                 {% csrf_token %}
-                <table border="1" cellspacing="0">
-                    <tr style="background-color: #F0F8FF">
-                        <td class="cpab"><font size="3">コンピテンシー</font></td>
-                        <td class="cpa"><font size="3">コンピテンシー詳細</font></td>
-                        <td class="cpaa"><div class="tooltip3"><font size="3">本人評価</font><div class="description3">3.このような行動はよく見られる<br>2.このような行動が見られることがある<br>1.このような行動はほとんど見られない</div></div></td>
-                        <td class="cpaa"><div class="tooltip3"><font size="3">評定者評価</font><div class="description3">3.このような行動はよく見られる<br>2.このような行動が見られることがある<br>1.このような行動はほとんど見られない</div></div></td>
-                        <td class="cpa"><font size="3">考察</font></td>
-                        <td class="cpa"><font size="3">向上プラン</font></td>
-                </tr>
-                    <tr>
-                        <tr><td rowspan="3"><font size="1">{{B1}}</font></td>
-                            <td><font size="1">{{B2}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.0}}</font></td>
-                            <td><font size="1">{{data2.0}}</font></td>
-                            <td><font size="1">{{data3.0}}</font></td>
-                            <td><font size="1">{{data4.0}}</font></td></tr>
-                        </tr>
-                        <tr><td><font size="1">{{B3}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.1}}</font></td>
-                            <td><font size="1">{{data2.1}}</font></td>
-                            <td><font size="1">{{data3.1}}</font></td>
-                            <td><font size="1">{{data4.1}}</font></td></tr>
-                        </tr>
-                        <tr><td><font size="1">{{B4}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.2}}</font></td>
-                            <td><font size="1">{{data2.2}}</font></td>
-                            <td><font size="1">{{data3.2}}</font></td>
-                            <td><font size="1">{{data4.2}}</font></td></tr>
-                        </tr>
-                    </tr>
-                    <tr>
-                        <tr><td rowspan="3"><font size="1">{{B5}}</font></td>
-                            <td><font size="1">{{B6}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.3}}</font></td>
-                            <td><font size="1">{{data2.3}}</font></td>
-                            <td><font size="1">{{data3.3}}</font></td>
-                            <td><font size="1">{{data4.3}}</font></td></tr>
-                        </tr>
-                        <tr><td><font size="1">{{B7}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.4}}</font></td>
-                            <td><font size="1">{{data2.4}}</font></td>
-                            <td><font size="1">{{data3.4}}</font></td>
-                            <td><font size="1">{{data4.4}}</font></td></tr>
-                        </tr>
-                        <tr><td><font size="1">{{B8}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.5}}</font></td>
-                            <td><font size="1">{{data2.5}}</font></td>
-                            <td><font size="1">{{data3.5}}</font></td>
-                            <td><font size="1">{{data4.5}}</font></td></tr>
-                        </tr>
-                    </tr>
-                    <tr>
-                        <tr><td rowspan="3"><font size="1">{{B9}}</font></td>
-                            <td><font size="1">{{B10}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.6}}</font></td>
-                            <td><font size="1">{{data2.6}}</font></td>
-                            <td><font size="1">{{data3.6}}</font></td>
-                            <td><font size="1">{{data4.6}}</font></td></tr>
-                        </tr>
-                        <tr><td><font size="1">{{B11}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.7}}</font></td>
-                            <td><font size="1">{{data2.7}}</font></td>
-                            <td><font size="1">{{data3.7}}</font></td>
-                            <td><font size="1">{{data4.7}}</font></td></tr>
-                        </tr>
-                        <tr><td><font size="1">{{B12}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.8}}</font></td>
-                            <td><font size="1">{{data2.8}}</font></td>
-                            <td><font size="1">{{data3.8}}</font></td>
-                            <td><font size="1">{{data4.8}}</font></td></tr>
-                        </tr>
-                    </tr>
-                    <tr>
-                        <tr><td rowspan="3"><font size="1">{{B13}}</font></td>
-                            <td><font size="1">{{B14}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.9}}</font></td>
-                            <td><font size="1">{{data2.9}}</font></td>
-                            <td><font size="1">{{data3.9}}</font></td>
-                            <td><font size="1">{{data4.9}}</font></td></tr>
-                        </tr>
-                        <tr><td><font size="1">{{B15}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.10}}</font></td>
-                            <td><font size="1">{{data2.10}}</font></td>
-                            <td><font size="1">{{data3.10}}</font></td>
-                            <td><font size="1">{{data4.10}}</font></td></tr>
-                        </tr>
-                        <tr><td><font size="1">{{B16}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.11}}</font></td>
-                            <td><font size="1">{{data2.11}}</font></td>
-                            <td><font size="1">{{data3.11}}</font></td>
-                            <td><font size="1">{{data4.11}}</font></td></tr>
-                        </tr>
-                    </tr>
-                    <tr>
-                        <tr><td rowspan="3"><font size="1">{{B17}}</font></td>
-                            <td><font size="1">{{B18}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.12}}</font></td>
-                            <td><font size="1">{{data2.12}}</font></td>
-                            <td><font size="1">{{data3.12}}</font></td>
-                            <td><font size="1">{{data4.12}}</font></td></tr>
-                        </tr>
-                        <tr><td><font size="1">{{B19}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.13}}</font></td>
-                            <td><font size="1">{{data2.13}}</font></td>
-                            <td><font size="1">{{data3.13}}</font></td>
-                            <td><font size="1">{{data4.13}}</font></td></tr>
-                        </tr>
-                        <tr><td><font size="1">{{B20}}</td>
-                            <td style="height: 45px;"><font size="1">{{data1.14}}</font></td>
-                            <td><font size="1">{{data2.14}}</font></td>
-                            <td><font size="1">{{data3.14}}</font></td>
-                            <td><font size="1">{{data4.14}}</font></td></tr>
-                        </tr>
-                    </tr>
-                </table>
-                {% if sbmt == 0 %}
-                    <font color="blue">{{FN}}&nbsp;{{LN}}</font>さんの送信をお待ちください（デモ版では山田課長部下の被評定者メニューはありませんので差し戻しますと終了となります）<br>
-                {% endif %}
-                {% if sbmt == 1 %}
-                    評定者評価を入力して下さい。また考察と向上プランを確認し承認か差し戻しボタンを押下して下さい。
-                    <br>
-                    <td><a href="{% url 'editCPA2' name=EMP %}"><font size="2">評定者評価を入力する</font></a></td>
-                    <br>
-                    <tr><th><td>
-                        <input type="submit" name="DL" value="ダウンロード" class="button3">
-                    </td></th></tr> 
-                    <tr><th><td>
-                        <input type="submit" name="send" value="承認" class="button">
-                    </td></th></tr>   
-                    <tr><th><td>
-                        <input type="submit" name="back" value="差し戻し" class="button4">
-                    </td></th></tr>
-                {% endif %}
-                {% if sbmt == 2 %}
-                    <font size="2">承認済みです（デモ版では当年度のみですのでこちらで完了です）</font><br>
-                    <tr><th><td>
-                        <input type="submit" name="DL" value="ダウンロード" class="button3">
-                    </td></th></tr> 
-                {% endif %}
-                <br><td><a href="{% url 'sample' %}"><font size="2">人事システムホーム画面に戻る</font></a></td>       
+                <font color="green">{{text}}</font>
+                {% for item in object_list %}
+                    <br>{{item.name}}&nbsp;&nbsp;&nbsp;
+                    <input type="submit" name="{{item.id}}" value="delete">
+                {% endfor %}
+                <br><td><a href="{% url 'sample' %}"><font size="2">back to home</font></a></td>       
                 </form>
         {% else %}
-        アクセスをお持ちでありません
+            you have no access
         {% endif %}
     </body>
 </html>

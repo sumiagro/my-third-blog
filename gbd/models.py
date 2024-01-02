@@ -7,12 +7,24 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 type_choices = (('NDA','NDA'),('Evaluation/Material Transfer Agreement','Evaluation/Material Transfer Agreement'),('Distribution Agreement','Distribution Agreement'),('Licensing Agreement','Licensing Agreement'),('etc','etc'))
 
+class senha(models.Model):
+    name = models.CharField(max_length=100)
+    senha = models.CharField(max_length=100)
+
+class MM(models.Model):
+    name = models.CharField(max_length=100)
+    participant1 = models.CharField(max_length=100)
+    participant2 = models.CharField(max_length=100)
+    date = models.DateField(blank=True, default=0)
+    detail = models.TextField(max_length=30000)
+    material = models.FileField(upload_to='meetingminutes', blank=True)
+
 class Foo(models.Model):
     name = models.CharField(max_length=100)
     ctype = models.CharField(max_length=50,choices=type_choices, blank=True)
     date1 = models.DateField(blank=True, default=0)
     date2 = models.DateField(blank=True, default=0)
-    upload = models.FileField(upload_to='file/%Y/%m/%d')
+    upload = models.FileField(upload_to='contract')
 
 class GOAL22(models.Model):
 

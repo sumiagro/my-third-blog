@@ -1,5 +1,5 @@
 {% load static %}
-<html lang="ja" dir="ltr">
+<html lang="en" dir="ltr">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <meta charset="utf-8">
@@ -12,21 +12,23 @@
         {% if user.is_authenticated %}
             <form enctype="multipart/form-data" action="{% url 'GOAL' %}" method="post">
                 {% csrf_token %}
-                    {{response}}<br>
-                    {{form}}
-                    <input type="submit" name="register" value="register" class="button3">
+                    <font color="green">{{response}}</font><br>
+                    supplier name {{form.name}} please choose contract type {{form.ctype}}
+                    <br>starting date{{form.date1}} termination date{{form.date2}}
+                    <br>please upload the file{{form.upload}}
+                    <input type="submit" name="register" value="upload" class="button3">
                     <br><br>
                     <table border="1" cellspacing="0">
                         <tr style="background-color: #F0F8FF">
-                        <td class="goal"><font size="2">supplier</font></td>
-                        <td class="goala"><font size="2">type of contract</font></td>
-                        <td class="goal"><font size="2">starting date</font></td>
-                        <td class="goal"><font size="2">date of end</font></td>
-                        <td class="goala"><font size="2">download</font></td>
+                        <td style="width: 250px;"><font size="2">supplier</font></td>
+                        <td style="width: 300px;"><font size="2">type of contract</font></td>
+                        <td style="width: 100px;"><font size="2">starting date</font></td>
+                        <td style="width: 100px;"><font size="2">date of end</font></td>
+                        <td style="width: 100px;"><font size="2">download</font></td>
                     </tr>
-                    {% for item in data %}
+                    {% for item in data reversed %}
                         <tr>
-                            <td class="goal" style="height: 20px;"><font size="2">{{item.name}}</font></td>
+                            <td style="height: 20px;"><font size="2">{{item.name}}</font></td>
                             <td><font size="2">{{item.ctype}}</font></td>
                             <td><font size="2">{{item.date1}}</font></td>
                             <td><font size="2">{{item.date2}}</font></td>
@@ -34,26 +36,10 @@
                         </tr>
                     {% endfor %}
                 </table>
-                <td><font size="2"><input type="submit" name={{item}} value="ダウンロード"></font></td>
-                {% if sbmt == 0 or sbmt == 2 or sbmt == 4 %}
-                    <td><a href="{% url 'edit' user.id %}"><font size="2">編集する</font></a></td>
-                    <br>
-                    <tr><th><td>
-                        <input type="submit" name="DL" value="ダウンロード" class="button3">
-                    </td></th></tr> 
-                    <tr><th><td>
-                        <input type="submit" name="send" value="評定者に送信" class="button">
-                    </td></th></tr>   
-                {% else %}
-                    <tr><th><td>
-                        <input type="submit" name="DL" value="ダウンロード" class="button3">
-                    </td></th></tr> 
-                {% endif %}
                 <br><td><a href="{% url 'sample' %}"><font size="2">back to home</font></a></td>       
-                <br><td><a href="{% url 'register' %}"><font size="2">register</font></a></td>       
             </form>
         {% else %}
-        アクセスをお持ちでありません
+            you do not have any access
         {% endif %}
     </body>
 </html>
