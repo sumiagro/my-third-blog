@@ -316,10 +316,10 @@ def GOAL4(request):
             AA.ctype = data[5*i+1]
             AA.date1 = data[5*i+2]
             AA.date2 = data[5*i+3]
-#            AA.upload = data[5*i+4]
-            dscr = str(data[5*i+4])
-            my_file2 = os.path.join(THIS_FOLDER,dscr)
-            AA.upload = my_file2
+            AA.upload = data[5*i+4]
+#            dscr = str(data[5*i+4])
+#            my_file2 = os.path.join(THIS_FOLDER,dscr)
+#            AA.upload = my_file2
             AA.save()
             text = "successfully recovered the accounts !!"
     else:
