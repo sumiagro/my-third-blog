@@ -63,6 +63,7 @@ def sample(request):
     #    "data1":TIMEForm(instance=obj),
         "case":case,
         "object_list":object_list,
+        "UserID":request.user,
         }
     return render(request, 'gbd/sample.html', params)
 
@@ -337,7 +338,8 @@ def CPA3(request):
     my_file = os.path.join(THIS_FOLDER,'upM.txt')
     f = open(my_file,'r', encoding='UTF-8')
     data = f.read()
-    data = data.replace('\n','^')
+    data = data.replace(' ##','^')
+    data = data.replace('##','^')
     data = data.split('^')
     BB = len(data)
     CC = int(BB)/6

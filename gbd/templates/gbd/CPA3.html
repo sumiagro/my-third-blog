@@ -15,17 +15,17 @@
                 <br><td><a href="{% url 'sample' %}"><font size="2">back to home</font></a></td>
                 <br><input type="submit" name="upload" value="recover meeting minutes">
                 <br>{{data}}
-                <br>{{CC}}
+                <br>{{CC}}<br>
                 {% for item in obj %}
-                    <br>{{item.name}}
-                    <br>{{item.participant1}}
-                    <br>{{item.participant2}}
-                    <br>{{item.date.year}}-{{item.date.month}}-{{item.date.day}}
-                    <br>{{item.detail}}
+                    {{item.name}}
+                    ##{{item.participant1}}
+                    ##{{item.participant2}}
+                    ##{{item.date.year}}-{{item.date.month}}-{{item.date.day}}
+                    ##<div class="MMpop">{{item.detail}}##</div>
                     {% if item.material == '' %}
-                        <br>none
+                        none##
                     {% else %}
-                        <br><a href="{{ item.material.url }}" download="{{ item.material }}">{{item.material}}</a>
+                        <a href="{{ item.material.url }}" download="{{ item.material }}">{{item.material}}</a>##
                     {% endif %}
                 {% endfor %}
                 <br>

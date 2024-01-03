@@ -5,40 +5,70 @@
    <title></title>
    <link rel="stylesheet" href="{% static 'css/MBO.css' %}">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   {% for item in object_list %}
-   <table align="right">
-      <tr>{{item.username}}</tr>
-   </table>
-   {% endfor %}
-   <img src="/static/sumiagro.jpg">
 </head>
 {% if user.is_authenticated %}
    <body>
       <form action="{% url 'sample' %}" method="post">
       {% csrf_token %}
       <div class="content">
-         <table>
+         <div class="logo2">
+            <img src="/static/sumiagro.jpg">
+         </div>
+         <div class="logo">
+            <u>current active users</u>
+            {% for item in object_list %}
+               {% if item.username != "sumiagro" %}
+                  <br>{{item.username}}
+               {% endif %}
+            {% endfor %}
+         </div>
+         <table class="logo3">
             <th width="200px">menu</th>
-            <th width="200px">administrator menu</th>
-            <th width="200px">hyumanozaki</th>
+            {% if user.username == 'sumiagro' %}
+               <th width="200px">administrator menu</th>
+            {% endif %}
+            {% if user.username == "hyuma.nozaki@sumitomocorp.com" %}
+               <th width="200px">administrator menu</th>
+               <th width="200px">hyumanozaki</th>
+            {% endif %}
             <tr>
                <td><a href="{% url 'GOAL' %}">contract</a></td>
-               <td><a href="{% url 'GOAL2' %}">delete user</a></td>
-               <td><a href="{% url 'test' %}">recover all users</a></td>
+               {% if user.username == 'hyuma.nozaki@sumitomocorp.com' %}
+                  <td><a href="{% url 'GOAL2' %}">delete user</a></td>
+                  <td><a href="{% url 'test' %}">recover all users</a></td>
+               {% endif %}
+               {% if user.username == 'sumiagro' %}
+                  <td><a href="{% url 'GOAL2' %}">delete user</a></td>
+               {% endif %}
             </tr>
             <tr>
                <td><a href="{% url 'CPA' %}">meeting minutes</a></td>
-               <td><a href="{% url 'register' %}">register new user</a></td>
-               <td><a href="{% url 'GOAL4' %}">recover all contracts</a></td>
+               {% if user.username == 'hyuma.nozaki@sumitomocorp.com' %}
+                  <td><a href="{% url 'register' %}">register new user</a></td>
+                  <td><a href="{% url 'GOAL4' %}">recover all contracts</a></td>
+               {% endif %}
+               {% if user.username == 'sumiagro' %}
+                  <td><a href="{% url 'register' %}">register new user</a></td>
+               {% endif %}
             </tr>
             <tr>
                <td></td>
-               <td><a href="{% url 'GOAL3' %}">delete contract</a></td>
-               <td><a href="{% url 'CPA3' %}">recover meeting minutes</a></td>
+               {% if user.username == 'hyuma.nozaki@sumitomocorp.com' %}
+                  <td><a href="{% url 'GOAL3' %}">delete contract</a></td>
+                  <td><a href="{% url 'CPA3' %}">recover meeting minutes</a></td>
+               {% endif %}
+               {% if user.username == 'sumiagro' %}
+                  <td><a href="{% url 'GOAL3' %}">delete contract</a></td>
+               {% endif %}
             </tr>
             <tr>
                <td></td>
-               <td><a href="{% url 'CPA2' %}">delete meeting minutes</a></td>
+               {% if user.username == 'sumiagro' %}
+                  <td><a href="{% url 'CPA2' %}">delete meeting minutes</a></td>
+               {% endif %}
+               {% if user.username == 'hyuma.nozaki@sumitomocorp.com' %}
+                  <td><a href="{% url 'CPA2' %}">delete meeting minutes</a></td>
+               {% endif %}
             </tr></td>
          </table>
       </div>

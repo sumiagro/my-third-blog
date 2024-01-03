@@ -12,7 +12,7 @@
         {% if user.is_authenticated %}
             <form enctype="multipart/form-data" action="{% url 'CPA' %}" method="post">
                 {% csrf_token %}
-                <br><td><a href="{% url 'sample' %}"><font size="2">back to home</font></a></td>       
+                <td><a href="{% url 'sample' %}"><font size="2">back to home</font></a></td>       
                 <table border="1" cellspacing="0">
                     <tr style="background-color: #F0F8FF">
                     <td style="width: 150px;"><font size="2">supplier name</font></td>
@@ -28,7 +28,7 @@
                         <td><font size="2">{{item.participant1}}</font></td>
                         <td><font size="2">{{item.participant2}}</font></td>
                         <td><font size="2">{{item.date}}</font></td>
-                        <td><a href="{% url 'edit2' num=item.id %}">click here to read the details</a></td>
+                        <td><a href="{% url 'edit2' num=item.id %}"><font size="2">click here to read the details</font></a></td>
                         {% if item.material == '' %}
                             <td></td>
                         {% else %}
@@ -37,11 +37,13 @@
                     </tr>
                 {% endfor %}
                 </table>
-                <font color="green">{{response}}</font>
+                <br>
+                <font color="green" size="2">{{response}}</font>
+                <font size="2">
                 <br>supplier name {{form.name}} meeting date{{form.date}}
                 <br>participant from supplier {{form.participant1}} participant from Sumi/Summit Agro {{form.participant2}}
                 <br>meeting minutes{{form.detail}}
-                <br>please upload if any meeting material (only 1 can be uploaded) {{form.material}}
+                <br>please upload if any meeting material (only 1 can be uploaded) {{form.material}}</font>
                 <br><input type="submit" name="register" value="upload" class="button3">
             </form>
         {% else %}
