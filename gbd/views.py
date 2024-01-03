@@ -23,6 +23,8 @@ import io
 import openpyxl as op
 from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import UserCreationForm
+from django.conf import settings
+
 
 # Create your views here.
 
@@ -125,6 +127,7 @@ def GOAL(request):
                 reg.save()
                 response = "successfully uploaded!!"
 #                return redirect(to='/GOAL')
+
             else :
                 response = "failed"
 
@@ -317,7 +320,10 @@ def GOAL4(request):
             AA.ctype = data[5*i+1]
             AA.date1 = data[5*i+2]
             AA.date2 = data[5*i+3]
-            AA.upload = data[5*i+4]
+            j=str(data[5*i+4])
+            j=j.replace("_","")
+            AA.upload = j
+#            AA.upload = data[5*i+4]
 #            dscr = str(data[5*i+4])
 #            my_file2 = os.path.join(THIS_FOLDER,dscr)
 #            AA.upload = my_file2
@@ -338,6 +344,7 @@ def CPA3(request):
     my_file = os.path.join(THIS_FOLDER,'upM.txt')
     f = open(my_file,'r', encoding='UTF-8')
     data = f.read()
+    data = data.replace(' ## ','##')
     data = data.replace(' ##','^')
     data = data.replace('##','^')
     data = data.split('^')
@@ -351,11 +358,13 @@ def CPA3(request):
             AA.participant1 = data[6*i+1]
             AA.participant2 = data[6*i+2]
             AA.date = data[6*i+3]
-            AA.detail = data[6*i+4]
-            if data[6*i+5] == 'none':
+            AA.detail = data[6*i+5]
+            if str(data[6*i+4]) == 'none':
                 AA.material = ''
             else :
-                AA.material = data[6*i+5]
+                j=str(data[6*i+4])
+                j=j.replace("_","")
+                AA.material = j
             AA.save()
             text = "successfully recovered the accounts !!"
     else:
@@ -422,20 +431,27 @@ def edit(request, num):
     return render(request, 'gbd/edit.html', params)
 
 
+def editCPA(request):
 
-def editCPA(request, num):
-    obj = CPA22.objects.get(user=request.user)
+    obj1=Foo.objects.all()
+    obj2=MM.objects.all()
+    
+    import glob
+    AA = glob.glob('./media/contract/*')
+    BB = glob.glob('./media/meetingminutes/*')
+
     if (request.method == 'POST'):
-        friend = CPA22CForm(request.POST, instance=obj)
-        friend.save()
-        return redirect(to='/CPA')
+        for i in AA:
+            new = i.replace(" ","")
+            new = new.replace("　","")
+            os.rename(i,new)
+        for i in BB:
+            new = i.replace(" ","")
+            new = new.replace("　","")
+            os.rename(i,new)
+        return redirect(to='/editCPA')
 
-    params = {
-        "FN":request.user.first_name,"LN":request.user.last_name,
-        "data1":CPA22CForm(instance=obj),
-        "data2":CPA22.objects.values_list('CPA22A1A','CPA22A2A','CPA22A3A','CPA22B1A','CPA22B2A','CPA22B3A','CPA22C1A','CPA22C2A','CPA22C3A','CPA22D1A','CPA22D2A','CPA22D3A','CPA22E1A','CPA22E2A','CPA22E3A').get(user=request.user),
-        "B1":BB1,"B2":BB2,"B3":BB3,"B4":BB4,"B5":BB5,"B6":BB6,"B7":BB7,"B8":BB8,"B9":BB9,"B10":BB10,"B11":BB11,"B12":BB12,"B13":BB13,"B14":BB14,"B15":BB15,"B16":BB16,"B17":BB17,"B18":BB18,"B19":BB19,"B20":BB20,
-        }
+    params = {"obj1":obj1,"obj2":obj2,"AA":AA,"BB":BB}
     return render(request, 'gbd/editCPA.html', params)
 
 def editCPA2(request,name):

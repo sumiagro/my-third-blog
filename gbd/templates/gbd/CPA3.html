@@ -21,12 +21,12 @@
                     ##{{item.participant1}}
                     ##{{item.participant2}}
                     ##{{item.date.year}}-{{item.date.month}}-{{item.date.day}}
-                    ##<div class="MMpop">{{item.detail}}##</div>
                     {% if item.material == '' %}
-                        none##
+                        ##none
                     {% else %}
-                        <a href="{{ item.material.url }}" download="{{ item.material }}">{{item.material}}</a>##
+                        ##<a href="{{ item.material.url }}" download="{{ item.material }}">{{item.material}}</a>
                     {% endif %}
+                    ##<div class="MMpop">{{item.detail}}##</div>
                 {% endfor %}
                 <br>
                 {% for item in obj %}
