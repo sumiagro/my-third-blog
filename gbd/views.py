@@ -23,7 +23,7 @@ import io
 import openpyxl as op
 from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import UserCreationForm
-from django.conf import settings
+#from django.conf import settings
 
 
 # Create your views here.
